@@ -1,132 +1,78 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <img src="https://upload.wikimedia.org/wikipedia/id/thumb/0/03/Logo_Telkom_University_potrait.png/400px-Logo_Telkom_University_potrait.png" width="120" alt="Telkom University Logo" />
+</p>
+<h1 align="center">Mini Project Backend Developer - Direktorat PUTI</h1>
+<p align="center">
+  <strong>Kandidat:</strong> Andre Putra Pratama (NIM: 103012580051) <br>
+  <strong>Program Studi:</strong> S1 Informatika
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+## Deskripsi Proyek
+
+Repositori ini berisi solusi komprehensif untuk Mini Project rekrutmen Backend Developer di Direktorat Perencanaan dan Pengembangan Teknologi Informasi (PUTI) Telkom University. Proyek ini terbagi menjadi dua bagian utama:
+
+1. **REST API Penjadwalan Mata Kuliah:** Sistem *backend* relasional yang mengelola data Dosen, Mata Kuliah, Mahasiswa, Jadwal, dan KRS dengan menerapkan prinsip *clean architecture*.
+2. **Penyelesaian Algoritma ICPC:** Implementasi *Greedy Constructive Algorithm* dalam Node.js untuk menyelesaikan masalah "Stacking Cups" (ICPC 2025).
+
+## Tech Stack
+
+Proyek ini dibangun menggunakan teknologi modern untuk memastikan skalabilitas, keamanan, dan performa tinggi:
+
+<p>
+  <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma ORM" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="Swagger UI" />
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Arsitektur & Keamanan
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Proyek ini telah dikonfigurasi dengan standar industri untuk keamanan dan keandalan sistem:
 
-## Project setup
+*   **Global Validation Pipe:** Menggunakan `class-validator` untuk memvalidasi DTO dan menolak *Bad Request* secara otomatis.
+*   **API Versioning:** Rute API diisolasi dengan prefix `/api/v1/`.
+*   **CORS Enabled:** Mengizinkan integrasi lintas asal (*Cross-Origin Resource Sharing*) untuk persiapan arsitektur *decoupled* dengan *frontend*.
+*   **Rate Limiting:** Menggunakan `@nestjs/throttler` untuk mencegah serangan DDoS atau *spam*.
+*   **Helmet Security:** Melindungi aplikasi dari celah kerentanan web umum (XSS, Clickjacking) via penyesuaian HTTP headers.
 
-```bash
-$ npm install
-```
+## Riwayat Instalasi & Perintah Terminal
 
-## Compile and run the project
+Sebagai bentuk transparansi proses *development*, berikut adalah seluruh perintah terminal yang digunakan untuk membangun proyek ini dari awal hingga selesai:
 
-```bash
-# development
-$ npm run start
+### 1. Inisialisasi Proyek & Infrastruktur
+- `nest new backend-puti` *(Membuat kerangka proyek NestJS)*
+- `docker compose up -d` *(Menjalankan PostgreSQL di dalam kontainer Docker)*
 
-# watch mode
-$ npm run start:dev
+### 2. Konfigurasi Prisma ORM
+- `npm install prisma --save-dev` *(Menginstal Prisma CLI)*
+- `npm install @prisma/client` *(Menginstal Prisma Client untuk ORM)*
+- `npx prisma init --datasource-provider postgresql` *(Menginisialisasi skema Prisma)*
+- `npx prisma migrate dev` *(Melakukan migrasi skema ERD ke dalam basis data)*
 
-# production mode
-$ npm run start:prod
-```
+### 3. Integrasi Modul Bonus & Keamanan
+- `npm install @nestjs/swagger` *(Membangun dokumentasi antarmuka)*
+- `npm install class-validator class-transformer` *(Memasang lapisan validasi)*
+- `npm install @nestjs/throttler` *(Memasang modul pembatasan akses)*
+- `npm install helmet` *(Memasang pengaman HTTP header)*
 
-## Run tests
+### 4. Eksekusi & Pengujian
+- `npm run start:dev` *(Menyalakan server lokal untuk REST API)*
+- `npx prisma studio` *(Membuka GUI untuk mengelola isi basis data)*
+- `node icpc_solution.js` *(Menjalankan dan menguji algoritma Stacking Cups)*
 
-```bash
-# unit tests
-$ npm run test
+## Panduan Menjalankan Sistem (Bagi Penguji)
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Pastikan Docker, Node.js, dan npm sudah terinstal. Jalankan perintah berikut secara berurutan di terminal:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker compose up -d
+npm install
+npx prisma migrate dev
+npm run start:dev
 ```
+Server API akan berjalan pada http://localhost:3000 dan dokumentasi Swagger dapat diakses di http://localhost:3000/docs.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-To add it to this project, run this and approve the code it prints at [observe.nestjs.com/link](https://observe.nestjs.com/link) - signing up for free if you have no account:
-
-```bash
-$ npx @nestjs/observe link
-```
-
-It installs `@nestjs/observe`, wires it into `AppModule` and `main.ts`, and writes the app key and secret into `.env`, which every `nest start` script (`start`, `start:dev`, `start:debug`) then loads. In production, set `OBSERVE_APP_KEY` and `OBSERVE_APP_SECRET` in the environment instead.
-
-Or do it by hand:
-
-```bash
-$ npm install @nestjs/observe
-```
-
-Then follow the [setup guide](https://docs.nestjs.com/observability/sdk) - it takes a single import and an app key.
-
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
