@@ -1,10 +1,9 @@
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/id/thumb/0/03/Logo_Telkom_University_potrait.png/400px-Logo_Telkom_University_potrait.png" width="120" alt="Telkom University Logo" />
+  <img src="https://it.telkomuniversity.ac.id/wp-content/uploads/2021/04/PuTI-Rounded-Square-ID-2048x2048.png.webp" width="120" alt="PUTI Logo" />
 </p>
 <h1 align="center">Mini Project Backend Developer - Direktorat PUTI</h1>
 <p align="center">
-  <strong>Kandidat:</strong> Andre Putra Pratama (NIM: 103012580051) <br>
-  <strong>Program Studi:</strong> S1 Informatika
+  <strong>Kandidat:</strong> Andre Putra Pratama<br>
 </p>
 
 ---
