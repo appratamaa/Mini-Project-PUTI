@@ -5,7 +5,6 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class MataKuliahService {
-  // <-- Injeksi PrismaService
   constructor(private prisma: PrismaService) {}
 
   create(createMataKuliahDto: CreateMataKuliahDto) {
@@ -14,7 +13,13 @@ export class MataKuliahService {
     });
   }
 
-  findAll() {
+  findAll(skip?: number, take?: number) {
+    if (skip !== undefined && take !== undefined) {
+      return this.prisma.mataKuliah.findMany({
+        skip,
+        take,
+      });
+    }
     return this.prisma.mataKuliah.findMany();
   }
 

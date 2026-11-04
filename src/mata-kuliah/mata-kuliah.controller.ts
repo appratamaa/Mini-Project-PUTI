@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseInterceptors } from '@nestjs/common';
 import { MataKuliahService } from './mata-kuliah.service';
 import { CreateMataKuliahDto } from './dto/create-mata-kuliah.dto';
 import { UpdateMataKuliahDto } from './dto/update-mata-kuliah.dto';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('mata-kuliah')
 export class MataKuliahController {
@@ -13,7 +14,16 @@ export class MataKuliahController {
   }
 
   @Get()
-  findAll() {
+  @UseInterceptors(CacheInterceptor) 
+  findAll(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    if (page && limit) {
+      const skip = (Number(page) - 1) * Number(limit);
+      const take = Number(limit);
+      return this.mataKuliahService.findAll(skip, take);
+    }
     return this.mataKuliahService.findAll();
   }
 

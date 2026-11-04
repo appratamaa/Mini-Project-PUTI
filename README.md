@@ -28,15 +28,19 @@ Proyek ini dibangun menggunakan teknologi modern untuk memastikan skalabilitas, 
   <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="Swagger UI" />
 </p>
 
-## Arsitektur & Keamanan
+## Arsitektur, Keamanan & Performa (Enterprise Level)
 
-Proyek ini telah dikonfigurasi dengan standar industri untuk keamanan dan keandalan sistem:
+Proyek ini telah dikonfigurasi dengan standar industri (OWASP) untuk keamanan, performa, dan keandalan sistem:
 
-*   **Global Validation Pipe:** Menggunakan `class-validator` untuk memvalidasi DTO dan menolak *Bad Request* secara otomatis.
-*   **API Versioning:** Rute API diisolasi dengan prefix `/api/v1/`.
-*   **CORS Enabled:** Mengizinkan integrasi lintas asal (*Cross-Origin Resource Sharing*) untuk persiapan arsitektur *decoupled* dengan *frontend*.
-*   **Rate Limiting:** Menggunakan `@nestjs/throttler` untuk mencegah serangan DDoS atau *spam*.
-*   **Helmet Security:** Melindungi aplikasi dari celah kerentanan web umum (XSS, Clickjacking) via penyesuaian HTTP headers.
+- **Global Validation Pipe:** Menggunakan `class-validator` untuk memvalidasi DTO dan menolak *Bad Request* secara otomatis.
+- **Global Exception Filter:** Mencegah kebocoran data sensitif (struktur tabel) akibat *internal server error* (Standar OWASP).
+- **Helmet Security:** Melindungi aplikasi dari celah kerentanan web umum (XSS, Clickjacking) via penyesuaian HTTP headers otomatis.
+- **Rate Limiting:** Menggunakan `@nestjs/throttler` untuk mencegah serangan DDoS atau *spam request*.
+- **CORS Enabled:** Mengizinkan integrasi lintas asal untuk persiapan arsitektur *decoupled* dengan *frontend*.
+- **API Versioning:** Rute API diisolasi dengan prefix `/api/v1/`.
+- **In-Memory Caching:** Integrasi `@nestjs/cache-manager` pada *endpoint GET* untuk memangkas waktu respons hingga hitungan milidetik.
+- **Pagination:** Pembatasan jumlah pengambilan data (contoh: `?page=1&limit=5`) pada rute pencarian massal guna menjaga stabilitas RAM *server*.
+- **Logger Middleware:** Sistem observabilitas yang secara otomatis mencatat seluruh rute akses, alamat IP, waktu respons, dan status API ke terminal *server* untuk kebutuhan audit DevOps.
 
 ## Riwayat Instalasi & Perintah Terminal
 
@@ -52,15 +56,16 @@ Sebagai bentuk transparansi proses *development*, berikut adalah seluruh perinta
 - `npx prisma init --datasource-provider postgresql` *(Menginisialisasi skema Prisma)*
 - `npx prisma migrate dev` *(Melakukan migrasi skema ERD ke dalam basis data)*
 
-### 3. Integrasi Modul Bonus & Keamanan
+### 3. Integrasi Modul Bonus, Keamanan & Performa
 - `npm install @nestjs/swagger` *(Membangun dokumentasi antarmuka)*
-- `npm install class-validator class-transformer` *(Memasang lapisan validasi)*
-- `npm install @nestjs/throttler` *(Memasang modul pembatasan akses)*
+- `npm install class-validator class-transformer` *(Memasang lapisan validasi DTO)*
+- `npm install @nestjs/throttler` *(Memasang modul pembatasan akses/Rate Limit)*
 - `npm install helmet` *(Memasang pengaman HTTP header)*
+- `npm install @nestjs/cache-manager cache-manager` *(Memasang modul In-Memory Caching)*
 
 ### 4. Eksekusi & Pengujian
 - `npm run start:dev` *(Menyalakan server lokal untuk REST API)*
-- `npx prisma studio` *(Membuka GUI untuk mengelola isi basis data)*
+- `npx prisma studio` *(Membuka GUI interaktif untuk mengelola isi basis data)*
 - `node icpc_solution.js` *(Menjalankan dan menguji algoritma Stacking Cups)*
 
 ## Panduan Menjalankan Sistem (Bagi Penguji)
@@ -73,5 +78,5 @@ npm install
 npx prisma migrate dev
 npm run start:dev
 ```
-Server API akan berjalan pada http://localhost:3000 dan dokumentasi Swagger dapat diakses di http://localhost:3000/docs.
 
+Server API akan berjalan pada http://localhost:3000 dan dokumentasi Swagger dapat diakses di http://localhost:3000/docs.

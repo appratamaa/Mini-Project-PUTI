@@ -3,19 +3,20 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common'; 
 import helmet from 'helmet';
+import { AllExceptionsFilter } from './common/filters/http-exception.filter'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  app.enableCors(); 
 
-  app.setGlobalPrefix('api/v1');
+  app.use(helmet()); 
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix('api/v1'); 
 
-  app.enableCors();
+  app.useGlobalPipes(new ValidationPipe()); 
 
-  app.use(helmet());
+  app.useGlobalFilters(new AllExceptionsFilter()); 
 
   const config = new DocumentBuilder()
     .setTitle('API Penjadwalan - PUTI')
