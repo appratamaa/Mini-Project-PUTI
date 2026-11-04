@@ -28,7 +28,7 @@ Proyek ini dibangun menggunakan teknologi modern untuk memastikan skalabilitas, 
   <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="Swagger UI" />
 </p>
 
-## Arsitektur, Keamanan & Performa (Enterprise Level)
+## Arsitektur, Keamanan & Performa
 
 Proyek ini telah dikonfigurasi dengan standar industri (OWASP) untuk keamanan, performa, dan keandalan sistem:
 
@@ -68,7 +68,7 @@ Sebagai bentuk transparansi proses *development*, berikut adalah seluruh perinta
 - `npx prisma studio` *(Membuka GUI interaktif untuk mengelola isi basis data)*
 - `node icpc_solution.js` *(Menjalankan dan menguji algoritma Stacking Cups)*
 
-## Panduan Menjalankan Sistem (Bagi Penguji)
+## Panduan Menjalankan Sistem
 
 Pastikan Docker, Node.js, dan npm sudah terinstal. Jalankan perintah berikut secara berurutan di terminal:
 
