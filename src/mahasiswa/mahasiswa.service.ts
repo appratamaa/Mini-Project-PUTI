@@ -1,0 +1,38 @@
+import { Injectable } from '@nestjs/common';
+import { CreateMahasiswaDto } from './dto/create-mahasiswa.dto';
+import { UpdateMahasiswaDto } from './dto/update-mahasiswa.dto';
+import { PrismaService } from '../prisma/prisma.service';
+
+@Injectable()
+export class MahasiswaService {
+  constructor(private prisma: PrismaService) {}
+
+  create(createMahasiswaDto: CreateMahasiswaDto) {
+    return this.prisma.mahasiswa.create({
+      data: createMahasiswaDto,
+    });
+  }
+
+  findAll() {
+    return this.prisma.mahasiswa.findMany();
+  }
+
+  findOne(id_mahasiswa: string) {
+    return this.prisma.mahasiswa.findUnique({
+      where: { id_mahasiswa },
+    });
+  }
+
+  update(id_mahasiswa: string, updateMahasiswaDto: UpdateMahasiswaDto) {
+    return this.prisma.mahasiswa.update({
+      where: { id_mahasiswa },
+      data: updateMahasiswaDto,
+    });
+  }
+
+  remove(id_mahasiswa: string) {
+    return this.prisma.mahasiswa.delete({
+      where: { id_mahasiswa },
+    });
+  }
+}

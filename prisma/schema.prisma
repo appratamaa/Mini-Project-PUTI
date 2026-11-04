@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma/client"
+  moduleFormat  = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Dosen {
+  id_dosen    String             @id @default(uuid())
+  nip_dosen   String             @unique
+  nama_dosen  String
+  
+  jadwal      JadwalMataKuliah[]
+}
+
+model MataKuliah {
+  id_mk       String             @id @default(uuid())
+  kode_mk     String             @unique
+  nama_mk     String
+  sks         Int
+  
+  jadwal      JadwalMataKuliah[]
+}
+
+model Mahasiswa {
+  id_mahasiswa   String          @id @default(uuid())
+  nim            String          @unique
+  nama_mahasiswa String
+  prodi          String
+  
+  krs            KRS_Mahasiswa[]
+}
+
+model JadwalMataKuliah {
+  id_jadwalMK String          @id @default(uuid())
+  id_dosen    String
+  id_mk       String
+  hari        String
+  jam_mulai   String          
+  jam_selesai String
+  ruangan     String
+  
+  dosen       Dosen           @relation(fields: [id_dosen], references: [id_dosen])
+  mataKuliah  MataKuliah      @relation(fields: [id_mk], references: [id_mk])
+  krs         KRS_Mahasiswa[]
+}
+
+model KRS_Mahasiswa {
+  id_krs       String           @id @default(uuid())
+  id_mahasiswa String
+  id_jadwalMK  String
+
+  mahasiswa    Mahasiswa        @relation(fields: [id_mahasiswa], references: [id_mahasiswa])
+  jadwal       JadwalMataKuliah @relation(fields: [id_jadwalMK], references: [id_jadwalMK])
+}
